@@ -1,0 +1,5 @@
+{
+	"application_port": 5500
+	"application_host": "0.0.0.0"
+	"allowed_ips":[]
+}
