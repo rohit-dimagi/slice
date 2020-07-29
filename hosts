@@ -1,0 +1,11 @@
+[proxy1]
+<<ip addr of nginx server>>
+
+[web1]
+<<ip addr of webserver>>
+
+[nginx:children]
+proxy1
+
+[webserver:children]
+web1

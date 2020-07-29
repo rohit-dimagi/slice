@@ -1,0 +1,12 @@
+---
+- hosts: nginx
+  become: true
+  roles:
+    - nginx
+  tags: nginx
+
+- hosts: webserver
+  become: true
+  roles:
+    - webserver
+  tags: webserver

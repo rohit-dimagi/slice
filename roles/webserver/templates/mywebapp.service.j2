@@ -1,0 +1,12 @@
+[Unit]
+Description="server  for Mywebapp"
+After=network.target
+
+[Service]
+WorkingDirectory={{ application_root_dir }}/app
+Environment=FLASK_ENV=production
+ExecStart=/usr/bin/python3 {{ application_root_dir }}/app/app.py
+
+[Install]
+WantedBy=multi-user.target
+
