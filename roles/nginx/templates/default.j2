@@ -1,5 +1,5 @@
 proxy_cache_path /tmp/cache levels=1:2 keys_zone=app_cache:10m
-                 max_size=1g inactive=24h
+                 max_size=1g inactive=24h;
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -10,27 +10,25 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name _;
+        proxy_set_header Host $http_host;
 
         location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-		proxy_pass http://{{groups.webserver.0}}:5000/;
-                try_files $uri $uri/ =404;
+		proxy_pass http://{{groups.webserver.0}}:5000$request_uri;
         }
 
         location /internal {
 {% if whitelist_ip_internal is defined %} 
     {% for item in whitelist_ip_internal %}
-                allow item;
+                allow {{ item }};
     {% endfor %}
 		deny all;
 {% endif %}
-                proxy_pass http://{{groups.webserver.0}}:5000/;
+                proxy_pass http://{{groups.webserver.0}}:5000$request_uri;;
 
         }
 
        location /cached {
-                proxy_pass http://{{groups.webserver.0}}:5000/;
+                proxy_pass http://{{groups.webserver.0}}:5000$request_uri;;
 		proxy_cache app_cache;
       }
 
