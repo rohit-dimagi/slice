@@ -11,6 +11,7 @@ server {
 
         server_name _;
         proxy_set_header Host $http_host;
+        add_header X-Proxy-Cache $upstream_cache_status;
 
         location / {
 		proxy_pass http://{{groups.webserver.0}}:5000$request_uri;
@@ -28,8 +29,9 @@ server {
         }
 
        location /cached {
-                proxy_pass http://{{groups.webserver.0}}:5000$request_uri;;
+		proxy_cache_valid any 48h;
 		proxy_cache app_cache;
+                proxy_pass http://{{groups.webserver.0}}:5000$request_uri;;
       }
 
 
