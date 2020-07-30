@@ -24,3 +24,12 @@ resource "aws_security_group" "allow-http" {
   }
 }
 
+resource "aws_security_group" "allow-proxy" {
+  name = "App server Security group" 
+  ingress {
+      from_port   = 5000
+      to_port     = 5000
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+}

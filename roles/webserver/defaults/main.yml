@@ -1,5 +1,5 @@
 git_repo: "https://github.com/rohit-dimagi/slice"
-application_port: 5500
+application_port: 5000
 application_host: "0.0.0.0"
 worker_process: 2
 application_root_dir: "/usr/local/slice/backend"
