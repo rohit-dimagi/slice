@@ -7,8 +7,8 @@ Things to do before running infra provisioning
 * Get AWS Access & secret key and update in the file called `terraform.tfvars` placed inside terraform folder
 
 ```
-AWS_ACCESS_KEY = "AKIA5VKP3Z4HZ46MUHHX"
-AWS_SECRET_KEY = "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"
+AWS_ACCESS_KEY = ""
+AWS_SECRET_KEY = ""
 
 ```
 * Create the s3 bucket in aws console in mentioned region & name inside `backends.tf`
